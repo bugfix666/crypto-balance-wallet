@@ -117,18 +117,15 @@ readonly class WalletService
      */
     private function validate(string $amount, string $walletUuid): string
     {
-        // 1. Проверка UUID
         if (false === $this->operationRepository->isValidUuid($walletUuid)) {
             throw new InvalidUuidStringException();
         }
 
-        // 2. Проверка существования кошелька
         $wallet = $this->walletRepository->findByUuid($walletUuid);
         if (null === $wallet) {
             throw new WalletNotFoundException();
         }
 
-        // 3. Получение точности
         $precisionDTO = $this->precisionRepository->getPrecisionByWallet($wallet);
         if (null === $precisionDTO) {
             throw new WalletCurrencyPrecisionNotSetException();
@@ -136,12 +133,10 @@ readonly class WalletService
 
         $precision = $precisionDTO->getPrecision();
 
-        // 4. Проверка, что сумма положительна (больше нуля)
         if (bccomp($amount, '0', $precision) <= 0) {
             throw new ProcessingAmountIsInvalidException($amount);
         }
 
-        // 5. Подготовка значения и проверка минимальной суммы
         $value = $this->operationRepository->prepareValue($amount, $precision);
         if ($this->precisionRepository->lessThanMinimumAmount($value, $precision)) {
             throw new ProcessingAmountIsInvalidException($value);

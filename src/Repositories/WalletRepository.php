@@ -73,13 +73,11 @@ final readonly class WalletRepository implements WalletRepositoryInterface
         Wallet $wallet,
         PrecisionDTO $precision,
     ): Operation {
-        // Блокируем строку операции, чтобы избежать конкурентных изменений
         $lockedOperation = Operation::query()
             ->whereKey($operation->id)
             ->lockForUpdate()
             ->firstOrFail();
 
-        // Разрешён только переход из HOLD в другое состояние
         if ($lockedOperation->op_state !== OpStateEnum::OS_HOLD) {
             throw new InvalidOperationStateException('Operation already processed');
         }
@@ -114,7 +112,6 @@ final readonly class WalletRepository implements WalletRepositoryInterface
      */
     private function cancelOperation(Operation $lockedOperation, Wallet $wallet, PrecisionDTO $precision): Operation
     {
-        // Возвращаем зарезервированные средства в зависимости от типа операции
         $rollbackAmount = match ($lockedOperation->op_type) {
             OpTypeEnum::OP_TYPE_CREDIT => bcmul($lockedOperation->amount, '-1', $precision->getPrecision()),
             OpTypeEnum::OP_TYPE_DEBIT => $this->operationRepository->absAmount($lockedOperation->amount),
@@ -156,9 +153,7 @@ final readonly class WalletRepository implements WalletRepositoryInterface
                 lockForUpdate: true
             );
 
-            // Создание новой операции кредита
             if ($operation === null) {
-                // Для кредита баланс всегда увеличивается, дополнительная проверка не требуется
                 Wallet::query()->whereKey($wallet->id)->increment('amount', $amount);
 
                 return $this->operationRepository->add(
@@ -174,7 +169,6 @@ final readonly class WalletRepository implements WalletRepositoryInterface
                 );
             }
 
-            // Обработка уже существующей операции (смена состояния)
             return $this->changeOperationState($operation, $opState, $wallet, $precisionDTO);
         }, 3);
     }
@@ -191,9 +185,7 @@ final readonly class WalletRepository implements WalletRepositoryInterface
         return DB::transaction(function () use ($amount, $walletUuid, $opState, $operation) {
             [$wallet, $precisionDTO] = $this->getWalletAndPrecision($walletUuid, lockForUpdate: true);
 
-            // Создание новой операции дебета
             if ($operation === null) {
-                // Резервируем средства только если операция создаётся в статусе HOLD
                 if ($this->operationRepository->isHoldState(OpTypeEnum::OP_TYPE_DEBIT, $opState)) {
                     $updated = Wallet::query()
                         ->whereKey($wallet->id)
@@ -205,7 +197,6 @@ final readonly class WalletRepository implements WalletRepositoryInterface
                     }
                 }
 
-                // Сумма в DTO сохраняется отрицательной для дебета
                 $negativeAmount = bcmul($amount, '-1', $precisionDTO->getPrecision());
 
                 return $this->operationRepository->add(
@@ -221,7 +212,6 @@ final readonly class WalletRepository implements WalletRepositoryInterface
                 );
             }
 
-            // Обработка уже существующей операции
             return $this->changeOperationState($operation, $opState, $wallet, $precisionDTO);
         }, 3);
     }

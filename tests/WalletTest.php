@@ -281,8 +281,6 @@ class WalletTest extends TestCase
         $this->assertSame(0, bccomp($walletAfter->amount, $initial));
     }
 
-    // ========== Тесты на ошибки ==========
-
     /**
      * @throws InvalidUuidStringException
      * @throws UnsupportedBlockchainOrCurrencyException
@@ -419,7 +417,6 @@ class WalletTest extends TestCase
      */
     public function test_operation_successful_response(): void
     {
-        // Пользователь и кошелёк уже созданы в setUp
         $precision = $this->precisionRepository->getPrecisionByWallet($this->wallet);
         $amount = $this->operationRepository->prepareValue('10.00', $precision->getPrecision());
         $operation = $this->walletService->addBalance(
@@ -440,7 +437,6 @@ class WalletTest extends TestCase
             ]
         ]);
 
-        // Дополнительная проверка содержимого
         $data = $response->json('data');
         $this->assertCount(1, $data);
         $this->assertEquals($amount, $data[0]['amount']);
