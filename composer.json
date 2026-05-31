@@ -1,0 +1,45 @@
+{
+  "name": "bugfix666/crypto-balance-wallet",
+  "description": "Wallet and balance management for crypto applications (Laravel package)",
+  "keywords": ["laravel", "wallet", "crypto", "balance", "hold", "transaction"],
+  "license": "GPL-3.0-only",
+  "type": "library",
+  "require": {
+    "php": "^8.4",
+    "ext-bcmath": "*",
+    "illuminate/support": "^10.0|^11.0|^12.0",
+    "illuminate/database": "^10.0|^11.0|^12.0",
+    "symfony/uuid": "^6.0|^7.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.0|^9.0|^10.0",
+    "phpunit/phpunit": "^10.5|^11.5",
+    "mockery/mockery": "^1.6",
+    "laravel/pint": "^1.13"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bugfix666\\CryptoBalanceWallet\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bugfix666\\CryptoBalanceWallet\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bugfix666\\CryptoBalanceWallet\\Providers\\WalletServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
