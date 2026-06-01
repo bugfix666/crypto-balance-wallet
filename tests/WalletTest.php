@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Feature;
+namespace Bugfix666\CryptoBalanceWallet\Tests;
 
 use Bugfix666\CryptoBalanceWallet\Enums\BlockchainEnum;
 use Bugfix666\CryptoBalanceWallet\Enums\OpStateEnum;
@@ -44,7 +44,7 @@ class WalletTest extends TestCase
         $this->operationRepository = app(OperationRepository::class);
         $this->user = User::factory()->create();
         $this->walletUuid = fake()->unique()->uuid();
-        $this->wallet = Wallet::factory()->create([
+        $this->wallet = Wallet::query()->create([
             'user_id' => $this->user->id,
             'uuid' => $this->walletUuid,
             'currency' => WalletCurrencyEnum::BTC,

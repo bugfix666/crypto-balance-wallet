@@ -9,7 +9,7 @@ namespace Bugfix666\CryptoBalanceWallet\Enums;
  * php version 8.4
  *
  * @category enums
- * @package  CryptoBalance
+ * @package CryptoBalanceWallet
  * @author   bugfix666 <appscenter@proton.me>
  * @license  GPLv3 License
  * @link     https://github.com/bugfix666/crypto-balance-wallet

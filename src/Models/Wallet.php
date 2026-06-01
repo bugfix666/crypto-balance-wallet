@@ -8,9 +8,7 @@ use Bugfix666\CryptoBalanceWallet\Enums\BlockchainEnum;
 use Bugfix666\CryptoBalanceWallet\Enums\WalletCurrencyEnum;
 use App\Models\User;
 use Bugfix666\CryptoBalanceWallet\Repositories\PrecisionRepository;
-use Database\Factories\Bugfix666\CryptoBalanceWallet\Models\WalletFactory;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -19,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * php version 8.4
  *
  * @category models
- * @package CryptoBalance
+ * @package CryptoBalanceWallet
  * @author bugfix666 <appscenter@proton.me>
  * @license GPLv3 License
  * @link https://github.com/bugfix/crypto-balance-wallet
@@ -30,7 +28,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property BlockchainEnum|null $blockchain_id
  * @property int $user_id
  * @property-read User $user
- * @method static WalletFactory factory($count = null, $state = [])
  * @method static Builder<static>|Wallet newModelQuery()
  * @method static Builder<static>|Wallet newQuery()
  * @method static Builder<static>|Wallet query()
@@ -44,9 +41,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Wallet extends Eloquent
 {
-    /** @use HasFactory<WalletFactory> */
-    use HasFactory;
-
     /**
      * @var bool
      */

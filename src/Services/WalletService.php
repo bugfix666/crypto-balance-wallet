@@ -21,7 +21,7 @@ use Bugfix666\CryptoBalanceWallet\Repositories\Interfaces\WalletRepositoryInterf
  * php version 8.4
  *
  * @category services
- * @package  CryptoBalance
+ * @package CryptoBalanceWallet
  * @author   bugfix666 <appscenter@proton.me>
  * @license  GPLv3 License
  * @link     https://github.com/bugfix666/crypto-balance-wallet
