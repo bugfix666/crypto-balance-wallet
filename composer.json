@@ -18,7 +18,7 @@
   "autoload": {
     "psr-4": {
       "Bugfix666\\CryptoBalanceWallet\\": "src/",
-      "Bugfix666\\CryptoBalanceWallet\\Database\\Factories\\": "database/factories"
+      "Database\\Factories\\Bugfix666\\CryptoBalanceWallet\\Models\\": "database/factories"
     }
   },
   "autoload-dev": {

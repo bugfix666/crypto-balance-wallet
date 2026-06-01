@@ -1,6 +1,6 @@
 <?php
 
-namespace Bugfix666\CryptoBalanceWallet\Database\Factories;
+namespace Database\Factories\Bugfix666\CryptoBalanceWallet\Models;
 
 use Bugfix666\CryptoBalanceWallet\Enums\WalletCurrencyEnum;
 use Bugfix666\CryptoBalanceWallet\Models\Wallet;

@@ -8,7 +8,7 @@ use Bugfix666\CryptoBalanceWallet\Enums\BlockchainEnum;
 use Bugfix666\CryptoBalanceWallet\Enums\WalletCurrencyEnum;
 use App\Models\User;
 use Bugfix666\CryptoBalanceWallet\Repositories\PrecisionRepository;
-use Bugfix666\CryptoBalanceWallet\Database\Factories\WalletFactory;
+use Database\Factories\Bugfix666\CryptoBalanceWallet\Models\WalletFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as Eloquent;
