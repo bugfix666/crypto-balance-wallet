@@ -3,6 +3,9 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bugfix666/crypto-balance-wallet.svg?style=flat-square)](https://packagist.org/packages/bugfix666/crypto-balance-wallet)
 [![Total Downloads](https://img.shields.io/packagist/dt/bugfix666/crypto-balance-wallet.svg?style=flat-square)](https://packagist.org/packages/bugfix666/crypto-balance-wallet)
 [![License](https://img.shields.io/packagist/l/bugfix666/crypto-balance-wallet.svg?style=flat-square)](https://packagist.org/packages/bugfix666/crypto-balance-wallet)
+[![PHP](https://img.shields.io/badge/PHP-8.4+-777BB4?logo=php&logoColor=white)]()
+[![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white)]()
+[![Redis](https://img.shields.io/badge/Redis-Queue-red?logo=redis&logoColor=white)]()
 
 Manage cryptocurrency wallets and balances with **hold mechanism** (two-phase transactions) – ideal for crypto exchanges, payment systems, and financial applications.
 
