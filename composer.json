@@ -8,14 +8,12 @@
     "php": "^8.4",
     "ext-bcmath": "*",
     "illuminate/support": "^10.0|^11.0|^12.0",
-    "illuminate/database": "^10.0|^11.0|^12.0",
-    "symfony/uuid": "^6.0|^7.0"
+    "illuminate/database": "^10.0|^11.0|^12.0"
   },
   "require-dev": {
     "orchestra/testbench": "^8.0|^9.0|^10.0",
     "phpunit/phpunit": "^10.5|^11.5",
-    "mockery/mockery": "^1.6",
-    "laravel/pint": "^1.13"
+    "mockery/mockery": "^1.6"
   },
   "autoload": {
     "psr-4": {
